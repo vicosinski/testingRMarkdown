@@ -16,7 +16,7 @@ Here is my first RMarkdown document!
 
 We'll write an R chunk here that loads the tidyverse library and then reads in the GapMinder dataset from our project directory
 
-```{r}
+```{r, message=FALSE}
 library(tidyverse)
 gm <- read_csv("gapminder.csv")
 ```
@@ -25,7 +25,7 @@ gm <- read_csv("gapminder.csv")
 
 Let's look at the gm dataset
 
-```{r}
+```{r, results=FALSE}
 head(gm)
 ```
 
@@ -33,7 +33,7 @@ head(gm)
 
 Showing the gdp per capita on the x axis and the life expectancy on the y axis
 
-```{r}
+```{r, fig.cap="Life Expectancy by GDP"}
 ggplot(gm, aes(gdp_per_cap, lifeexp)) + geom_point()
 ```
 
@@ -47,21 +47,21 @@ ggplot(gm, aes(gdp_per_cap, lifeexp)) +
   geom_point(aes(col = continent))
 ```
 
-#Option change #1 echo
+#Option change #1 echo = FALSE
 ```{r, fig.cap="Life Expectancy by GDP", echo=FALSE}
 ggplot(gm, aes(gdp_per_cap, lifeexp)) + 
   scale_x_log10() + 
   geom_point(aes(col = continent))
 ```
 
-#Option change #2 fig.show
+#Option change #2 fig.show = "hide"
 ```{r, fig.cap="Life Expectancy by GDP", fig.show = "hide"}
 ggplot(gm, aes(gdp_per_cap, lifeexp)) + 
   scale_x_log10() + 
   geom_point(aes(col = continent))
 ```
 
-#Option change #3 include
+#Option change #3 include = FALSE
 ```{r, fig.cap="Life Expectancy by GDP", include = FALSE}
 ggplot(gm, aes(gdp_per_cap, lifeexp)) + 
   scale_x_log10() + 
@@ -72,7 +72,7 @@ ggplot(gm, aes(gdp_per_cap, lifeexp)) +
 
 Some data using
 
-```{r}
+```{r, message=FALSE}
 head(gm)
 ```
 
