@@ -1,0 +1,85 @@
+---
+title: "GapMinder Analysis"
+author: "Tori Osinski"
+date: "3/11/2019"
+output: 
+  html_document: 
+    fig_caption: yes
+    toc: yes
+    keep_md: yes
+---
+# Introduction
+
+Here is my first RMarkdown document!
+
+# Let's embed some R code
+
+We'll write an R chunk here that loads the tidyverse library and then reads in the GapMinder dataset from our project directory
+
+```{r}
+library(tidyverse)
+gm <- read_csv("gapminder.csv")
+```
+
+# Investigate gm
+
+Let's look at the gm dataset
+
+```{r}
+head(gm)
+```
+
+#Our first plot
+
+Showing the gdp per capita on the x axis and the life expectancy on the y axis
+
+```{r}
+ggplot(gm, aes(gdp_per_cap, lifeexp)) + geom_point()
+```
+
+#A better plot
+
+Adding color by continent and adding a log scale for gdp
+
+```{r, fig.cap="Life Expectancy by GDP"}
+ggplot(gm, aes(gdp_per_cap, lifeexp)) + 
+  scale_x_log10() + 
+  geom_point(aes(col = continent))
+```
+
+#Option change #1 echo
+```{r, fig.cap="Life Expectancy by GDP", echo=FALSE}
+ggplot(gm, aes(gdp_per_cap, lifeexp)) + 
+  scale_x_log10() + 
+  geom_point(aes(col = continent))
+```
+
+#Option change #2 fig.show
+```{r, fig.cap="Life Expectancy by GDP", fig.show = "hide"}
+ggplot(gm, aes(gdp_per_cap, lifeexp)) + 
+  scale_x_log10() + 
+  geom_point(aes(col = continent))
+```
+
+#Option change #3 include
+```{r, fig.cap="Life Expectancy by GDP", include = FALSE}
+ggplot(gm, aes(gdp_per_cap, lifeexp)) + 
+  scale_x_log10() + 
+  geom_point(aes(col = continent))
+```
+
+# Trying out a kable table
+
+Some data using
+
+```{r}
+head(gm)
+```
+
+head as a table
+```{r}
+library(knitr)
+kable(head(gm))
+```
+
+
